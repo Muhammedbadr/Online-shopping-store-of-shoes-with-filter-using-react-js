@@ -1,9 +1,9 @@
-import { ColorLensSharp } from "@mui/icons-material";
+// import { ColorLensSharp } from "@mui/icons-material";
 
 // DateFilter.js
 const DateFilter = {
   categories: [
-    { Title: "Category" },
+    { Title: "Category" }, // Category title
     { categoryName: "All" },
     { categoryName: "Walk" },
     { categoryName: "Basketball" },
@@ -19,23 +19,22 @@ const DateFilter = {
     { PriceName: "$3000-$4000" },
     { PriceName: "$5000-$6000" },
     { PriceName: "$7000-$8000" },
-    { PriceName: "$800-$9000" },
-    { PriceName: "over  $9000" },
-
+    { PriceName: "$8000-$9000" }, // Fixed typo ("$800" -> "$8000")
+    { PriceName: "Over $9000" }, // Fixed spacing ("over $9000" -> "Over $9000")
   ],
   ColorLensSharp: [
-    { Title3: "Color" }, // Price title
+    { Title3: "Color" }, // Color title
     { ColorName: "All" },
     { ColorName: "Black" },
     { ColorName: "Blue" },
     { ColorName: "Pink" },
     { ColorName: "Gray" },
     { ColorName: "Green" },
-    { ColorName: "Oreng" },
-    { ColorName: "Bron" },
-    { ColorName: "White" },
-
+    { ColorName: "Orange" }, // Fixed typo ("Oreng" -> "Orange")
+    { ColorName: "Brown" }, // Fixed typo ("Bron" -> "Brown")
+    { ColorName: "White" }
   ],
 };
+
 
 export default DateFilter;

@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <nav className="bg-white border-b border-gray-200 dark:bg-white"> 
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={iconforsite} className="h-10 w-10 rounded-full shadow-lg" alt="Site Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-blue-600 dark:text-black font-cursive">

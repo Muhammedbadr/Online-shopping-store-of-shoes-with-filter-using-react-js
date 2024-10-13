@@ -8,7 +8,7 @@ const  Fillters = () => {
       <h1 className='font-bold text-gray-800 text-2xl'>Filltr</h1> 
       <div className='text-center'>
             <CategoryFillter/>
-          <FillterPrice/>
+            <FillterPrice/>
             <FillterColors/>
       </div>
     </div>
