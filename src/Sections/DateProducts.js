@@ -1,3 +1,4 @@
+
 import Image1 from '../Images/—Pngtree—blue running shoes_16400659.png'; // Import your image
 import Image2 from '../Images/—Pngtree—sneakers running fashion sports shoe_16213982.png'; // Import your image
 import Image3 from '../Images/pngwing.com (3).png'; // Import your image
@@ -15,6 +16,7 @@ const DateProducts = [
       originalPrice: 32400,
       discountedPrice: 31399,
       image: Image2,
+
       category: "Basketball",
       color: "white",
       gender: "man",
@@ -42,7 +44,7 @@ const DateProducts = [
       originalPrice: 76003,
       discountedPrice: 4320,
       image: Image4,
-      category: "Walking",
+      category:"Walking",
       color: "blue",
       gender: "man",
     },
@@ -82,15 +84,7 @@ const DateProducts = [
       color: "brown",
       gender: "man",
     },
-    {
-      title: 'NIKE Walking LDS',
-      originalPrice: 4343,
-      discountedPrice: 1212,
-      image: Image9,
-      category: "Walking",
-      color: "blue",
-      gender: "man",
-    },
+    
     {
       title: 'NIKE GF87',
       originalPrice: 12002,

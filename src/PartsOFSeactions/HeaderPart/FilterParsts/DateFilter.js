@@ -5,7 +5,7 @@ const DateFilter = {
   categories: [
     { Title: "Category" }, // Category title
     { categoryName: "All" },
-    { categoryName: "Walk" },
+    { categoryName: "Walking" },
     { categoryName: "Basketball" },
     { categoryName: "Running" },
     { categoryName: "Boot" },

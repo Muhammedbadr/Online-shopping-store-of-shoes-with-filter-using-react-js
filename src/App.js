@@ -1,79 +1,68 @@
 import './App.css';
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Sections/Header';
 import MainProjectCards from './Sections/MainProjectCards';
 import Filters from './Sections/Fillters';
-import { useState } from 'react';
+import {useState} from 'react';
+// Date
 import Products from './Sections/DateProducts';
+import ProductCard from './Sections/ProductCard'; // Import ProductCard component
 
+// // './PartsOFSeactions/HeaderPart/FilterParsts/DateFillers';
 function App() {
-  // State for filters
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedPrice, setSelectedPrice] = useState('All');
-  const [selectedColor, setSelectedColor] = useState('All');
-  const [query, setQuery] = useState("");
-
-  // Handle input search filter
-  const handleSearch = (event) => {
+  // filter
+  const [selectedCatogory, setSelectedCatogory] = useState(null)
+  // const [selectedPrice, setSelectedGender] = useState('All'); const
+  // [selectedcolor, setSelectedGender] = useState('All');
+  
+  // --------------- input  filter---------------
+  const [query,setQuery] = useState("")
+ 
+  const handleCategorySelect = event => {
     setQuery(event.target.value);
-  };
+  }
 
-  // Filter the products based on category, price, color, and search query
-  const filterProducts = () => {
-    let filteredProducts = Products;
+  const filterItem = Products.filter(product => product.title.toLowerCase().indexOf(query.toLowerCase() !== -1))
 
-    // Search query filter
+  // --------------- Radio filter ---------------
+  const handleCatogorySelect = event => {
+    setSelectedCatogory(event.target.value);
+  }
+  function filtredDate(products, selected, query) {
+    let filteredProducts = products
     if (query) {
-      filteredProducts = filteredProducts.filter(product => 
-        product.title.toLowerCase().includes(query.toLowerCase())
-      );
+      filteredProducts = filterItem
     }
-
-    // Category filter
-    if (selectedCategory !== 'All') {
-      filteredProducts = filteredProducts.filter(product => 
-        product.category === selectedCategory
-      );
+    if (selected) {
+      filteredProducts = filteredProducts.filter(({category, originalPrice, color, title}) => category === selected || originalPrice === selected || color === selected || title === selected)
+      // return products.filter(product => product[selected] === query)
     }
-
-    // Price filter
-    if (selectedPrice !== 'All') {
-      const [minPrice, maxPrice] = selectedPrice.replace('$', '').split('-').map(Number);
-      filteredProducts = filteredProducts.filter(product =>
-        product.originalPrice >= minPrice && product.originalPrice <= maxPrice
-      );
-    }
-
-    // Color filter
-    if (selectedColor !== 'All') {
-      filteredProducts = filteredProducts.filter(product => 
-        product.color.toLowerCase() === selectedColor.toLowerCase()
-      );
-    }
-
-    return filteredProducts;
-  };
-
+    return filteredProducts.map(({title, image, originalPrice,discountedPrice}) => (
+    <ProductCard 
+    key={Math.random()}
+    title={title}
+    originalPrice={originalPrice}
+    discountedPrice={null}
+    Image={image}
+    
+    />))
+  }
+  const result = filtredDate(Products,selectedCatogory,query)
   return (
     <div className='w-full h-screen flex flex-col'>
-      <Header />
+      <Header/>
       <div className="flex flex-grow">
         {/* Sidebar with custom width */}
         <div className='w-48 border-r-2 p-4'>
-          <Filters
-            setSelectedCategory={setSelectedCategory}
-            setSelectedPrice={setSelectedPrice}
-            setSelectedColor={setSelectedColor}
-            setQuery={handleSearch}
-          />
+          <Filters/>
         </div>
 
         {/* Main content taking the remaining space */}
         <div className='flex-grow p-4'>
-          <MainProjectCards products={filterProducts()} />
+          <MainProjectCards/>
         </div>
       </div>
     </div>
   );
 }
-
 export default App;
