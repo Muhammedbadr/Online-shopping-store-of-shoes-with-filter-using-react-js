@@ -18,49 +18,57 @@ function App() {
   // --------------- input  filter---------------
   const [query,setQuery] = useState("")
  
-  const handleCategorySelect = event => {
+  const handleInputChange = event => {
     setQuery(event.target.value);
   }
 
   const filterItem = Products.filter(product => product.title.toLowerCase().indexOf(query.toLowerCase() !== -1))
 
   // --------------- Radio filter ---------------
-  const handleCatogorySelect = event => {
+  const handleChange = event => {
     setSelectedCatogory(event.target.value);
   }
   function filtredDate(products, selected, query) {
-    let filteredProducts = products
+    let filteredProducts = products;
+  
+    // Filter by query
     if (query) {
-      filteredProducts = filterItem
+      filteredProducts = filteredProducts.filter(product =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
     }
-    if (selected) {
-      filteredProducts = filteredProducts.filter(({category, originalPrice, color, title}) => category === selected || originalPrice === selected || color === selected || title === selected)
-      // return products.filter(product => product[selected] === query)
+  
+    // Filter by selected category
+    if (selected && selected !== 'All') {
+      filteredProducts = filteredProducts.filter(product => product.category === selected);
     }
-    return filteredProducts.map(({title, image, originalPrice,discountedPrice}) => (
-    <ProductCard 
-    key={Math.random()}
-    title={title}
-    originalPrice={originalPrice}
-    discountedPrice={null}
-    Image={image}
-    
-    />))
+  
+    return filteredProducts.map(({ title, image, originalPrice, discountedPrice }) => (
+      <ProductCard 
+        key={Math.random()}
+        title={title}
+        originalPrice={originalPrice}
+        discountedPrice={discountedPrice} // Change this if you want to handle discounted price properly
+        Image={image}
+      />
+    ));
   }
+  
   const result = filtredDate(Products,selectedCatogory,query)
   return (
     <div className='w-full h-screen flex flex-col'>
-      <Header/>
+      <Header query={query} handleInputChange={handleInputChange} />
       <div className="flex flex-grow">
         {/* Sidebar with custom width */}
         <div className='w-48 border-r-2 p-4'>
-          <Filters/>
+          <Filters handleChange={handleChange}/>
         </div>
 
         {/* Main content taking the remaining space */}
         <div className='flex-grow p-4'>
-          <MainProjectCards/>
-        </div>
+  <MainProjectCards>{result}</MainProjectCards>
+</div>
+
       </div>
     </div>
   );
